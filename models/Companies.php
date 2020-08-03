@@ -41,9 +41,9 @@ class Companies extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'category_id' => 'Category ID',
-            'name' => 'Name',
+            'id' => 'Идентификатор',
+            'category_id' => 'Идентификатор категории',
+            'name' => 'Название',
         ];
     }
 
