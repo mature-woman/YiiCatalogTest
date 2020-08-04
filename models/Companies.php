@@ -30,7 +30,8 @@ class Companies extends \yii\db\ActiveRecord
     {
         return [
             [['category_id'], 'integer'],
-            [['name'], 'string', 'max' => 30],
+            [['name'], 'string', 'min' => 3, 'max' => 30],
+            [['name'], 'required'],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
@@ -43,6 +44,7 @@ class Companies extends \yii\db\ActiveRecord
         return [
             'id' => 'Идентификатор',
             'category_id' => 'Идентификатор категории',
+            'category' => 'Категория',
             'name' => 'Название',
         ];
     }

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\Categories;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Companies */
@@ -30,9 +31,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'category_id',
+            [
+                'label'     => $model->getAttributeLabel('category'),
+                
+                /**
+                 * Я бы переписал под HMVC с локальным запросом, не создавая здесь дополнительную зависимость от модели Categories
+                 * в данном случае усложнять смысла нет, поэтому оставлю так
+                 */
+                'value'     => (new Categories())::find()
+                    ->select('name')
+                    ->where(['id' => $model->category_id])
+                    ->column()[0] // Возвращает двумерный массив с одним значением
+            ],
             'name',
         ],
-    ]) ?>
+    ]); ?>
 
 </div>

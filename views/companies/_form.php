@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Categories;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Companies */
@@ -12,7 +13,20 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
+    <?php
+        // Получение имён и идентификаторов и преобразование в вид массива для вывода в списке
+
+        $categories_raw = (new Categories())::find()
+            ->select(['name', 'id',])
+            ->limit(30)
+            ->all();
+
+        $categories = [];
+        foreach ($categories_raw as $category) $categories[$category->id] = $category->name;
+    ?>
+    <?=
+        $form->field($model, 'category_id')->dropDownList($categories);
+    ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
