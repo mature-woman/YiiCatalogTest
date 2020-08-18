@@ -32,5 +32,11 @@ tests/_support/_generated
 # vagrant folder
 /.vagrant
 
+# root assets
+/assets
+
+# web assets
+/web/assets
+
 # dotenv settings
 .env

@@ -28,13 +28,17 @@ $config = [
         'db' => $db,
     ],
     'params' => $params,
-    /*
     'controllerMap' => [
-        'fixture' => [ // Fixture generation command line.
-            'class' => 'yii\faker\FixtureController',
-        ],
+        'fixture' => [
+            'class' => 'yii\faker\FixtureController',  
+            'class' => 'yii\console\controllers\FixtureController',
+            'namespace' => 'app/tests/unit/fixtures',
+            'class' => 'yii\faker\FixtureController',  
+            // 'globalFixtures' => [
+            //     'some\name\space\Foo',
+            //     'other\name\space\Bar'
+            ],
     ],
-    */
 ];
 
 if (YII_ENV_DEV) {
